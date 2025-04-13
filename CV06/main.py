@@ -22,25 +22,26 @@ def draw_l_system(commands, angle, start_x=0, start_y=0, start_angle=math.pi / 2
     y = start_y
     direction = start_angle
     lines = []
-    saved_positions = []
+    saved_positions = []  # Stack for branching
 
+    # Iterate through each command ins string
     for letter in commands:
-        if letter == "F":
+        if letter == "F":  # Move forward and draw a line
             new_x = x + math.cos(direction)
             new_y = y + math.sin(direction)
-            lines.append(((x, y), (new_x, new_y)))
+            lines.append(((x, y), (new_x, new_y)))  # Add line to list
             x = new_x
             y = new_y
-        elif letter == "b":
+        elif letter == "b":  # Move forward without drawing
             x += math.cos(direction)
             y += math.sin(direction)
-        elif letter == "+":
+        elif letter == "+":  # Turn right
             direction -= angle
-        elif letter == "-":
+        elif letter == "-":  # Turn left
             direction += angle
-        elif letter == "[":
+        elif letter == "[":  # Save the current
             saved_positions.append((x, y, direction))
-        elif letter == "]":
+        elif letter == "]":  # Restore the last saved
             if len(saved_positions) > 0:
                 x, y, direction = saved_positions.pop()
 
