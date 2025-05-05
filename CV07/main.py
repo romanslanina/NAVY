@@ -1,8 +1,6 @@
 import random
 import matplotlib.pyplot as plt
 
-1
-
 
 # Function for afinite transformation based on task
 def transform(point, params):
